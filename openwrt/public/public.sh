@@ -5,11 +5,12 @@
 lan_ip='192.168.2.1'        # Lan Ip地址
 utc_name='Asia\/Shanghai'   # 时区
 delete_bootstrap=true       # 是否删除默认主题 true 、false
-default_theme='argon_mc1'   # 默认主题 结合主题文件夹名字
-theme_argon='https://github.com/sypopo/luci-theme-argon-mc.git'  # 主题地址
+default_theme='infinityfreedom'   # 默认主题 结合主题文件夹名字
+theme_infinityfreedom='https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git'  # 主题地址
 openClash_url='https://github.com/vernesong/OpenClash.git'       # OpenClash包地址
 adguardhome_url='https://github.com/rufengsuixing/luci-app-adguardhome.git' # adguardhome 包地址
-lienol_url='https://github.com/Lienol/openwrt-package.git'       # Lienol 包地址
+openwrt-packages_url='https://github.com/kenzok8/openwrt-packages.git'       # openwrt-packages 包地址
+openwrt-packages_url_rely='https://github.com/kenzok8/small.git'       # openwrt-packages 包依赖
 vssr_url_rely='https://github.com/jerrykuku/lua-maxminddb.git'   # vssr lua-maxminddb依赖
 vssr_url='https://github.com/jerrykuku/luci-app-vssr.git'        # vssr地址
 vssr_plus_rely='https://github.com/Leo-Jo-My/my.git'             # vssr_plus 依赖
@@ -39,9 +40,9 @@ if [ $delete_bootstrap ] ;then
   sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 fi
 
-echo '添加主题argon'
-git clone $theme_argon package/lean/luci-theme-argon-mc
-echo 'CONFIG_PACKAGE_luci-theme-argon-mc=y' >> .config
+echo '添加主题infinityfreedom'
+git clone $theme_argon package/lean/luci-theme-infinityfreedom
+echo 'CONFIG_PACKAGE_luci-theme-infinityfreedom=y' >> .config
 
 echo '添加OpenClash'
 git clone $openClash_url package/lean/luci-app-openclash
@@ -50,8 +51,9 @@ git clone $openClash_url package/lean/luci-app-openclash
 echo 'CONFIG_PACKAGE_luci-app-openclash=y' >> .config
 echo 'CONFIG_PACKAGE_luci-i18n-openclash-zh-cn=y'  >> .config
 
-echo '添加Lienol包'
-git clone $lienol_url package/Lienol
+echo '添加openwrt-packages包'
+git clone $openwrt-packages_url package/openwrt-packages
+git clone $openwrt-packages_url_rely package/openwrt-packages
 
 echo '添加Passwall'
 echo 'CONFIG_PACKAGE_luci-app-passwall=y' >> .config
