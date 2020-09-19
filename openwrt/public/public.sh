@@ -16,6 +16,7 @@ vssr_url='https://github.com/jerrykuku/luci-app-vssr.git'        # vssr地址
 vssr_plus_rely='https://github.com/Leo-Jo-My/my.git'             # vssr_plus 依赖
 vssr_plus='https://github.com/Leo-Jo-My/luci-app-vssr-plus.git'  # vssr_plus 地址
 filter_url='https://github.com/destan19/OpenAppFilter.git'       # AppFilter 地址
+jd_url='https://github.com/jerrykuku/luci-app-jd-dailybonus.git' # 京东签到
 # 命令
 # echo "修改机器名称"
 # sed -i "s/OpenWrt/$device_name/g" package/base-files/files/bin/config_generate
@@ -86,6 +87,10 @@ echo 'CONFIG_PACKAGE_luci-app-oaf=y' >> .config
 echo 'CONFIG_PACKAGE_kmod-oaf=y' >> .config
 echo 'CONFIG_PACKAGE_appfilter=y' >> .config
 echo 'CONFIG_PACKAGE_luci-i18n-oaf-zh-cn=y'  >> .config
+
+echo '添加京东签到插件'
+git clone $jd_url package/openwrt-packages
+echo 'CONFIG_PACKAGE_luci-app-jd-dailybonus=y' >> .config
 
 # echo '添加Leo-Jo-My的Hello World,并且使用默认包配置'
 # git clone $vssr_plus_rely package/lean/luci-vssr-plus-rely
